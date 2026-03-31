@@ -16,7 +16,6 @@ services:
       - "5000:5000"
     environment:
       - PORT=5000
-      # Quan trọng: Đổi localhost thành tên service database để nó hiểu mạng nội bộ Docker
       - DB_URL=mongodb://database:27017/giuaky_db 
       - APP_NAME=MidtermBackend
     depends_on:
@@ -29,6 +28,8 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+    stdin_open: true
+    tty: true
 
 volumes:
   mongo-data:

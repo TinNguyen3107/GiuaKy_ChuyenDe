@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 1. Endpoint Health Check theo yêu cầu
+// 1. Endpoint Health Check
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });

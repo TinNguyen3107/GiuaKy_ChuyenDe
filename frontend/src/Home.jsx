@@ -19,7 +19,6 @@ function Home() {
     fetchNotes();
   }, []);
 
-  // Gửi dữ liệu lên Backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!content) return;
@@ -31,7 +30,7 @@ function Home() {
     });
     
     setContent('');
-    fetchNotes(); // Load lại danh sách
+    fetchNotes();
   };
 
   return (
