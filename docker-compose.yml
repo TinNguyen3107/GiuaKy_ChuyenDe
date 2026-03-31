@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend_container
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      # Quan trọng: Đổi localhost thành tên service database để nó hiểu mạng nội bộ Docker
+      - DB_URL=mongodb://database:27017/giuaky_db 
+      - APP_NAME=MidtermBackend
+    depends_on:
+      - database
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
